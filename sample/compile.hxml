@@ -1,0 +1,5 @@
+-main Main
+-swf Ctrl.swf
+-swf-header 800:600:30:FFFFFF
+-swf-version 10
+-cp ../
