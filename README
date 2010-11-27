@@ -1,0 +1,50 @@
+A input manager for flash/haXe
+
+So you don't have to write addEventListener to get keyboard input or mouse input
+
+You don't have to remember the keycode, just pass the string...
+
+It's used like this...
+In your main game loop, add Ctrl.instance.update(); in the end of the loop...
+
+For a shortcut you can store the singleton instance in a local variable for quick access...
+
+var c = Ctrl.instance;
+
+For checking whether a key is just pressed, use like this
+
+c.isPressed(theKey);
+
+For a key is down
+
+c.isDown(theKey);
+
+For a key is just released, use like this
+
+c.isReleased(theKey);
+
+For a key is up, use like this
+
+c.isUp(theKey);
+
+
+The "theKey" is a string, it can be "A", "B", "c", "1", "F1", "BacKSpace", "[", "up", etc...
+It's case insensitive, so UpperCase or LowerCase is work well...
+
+For mouse handling
+
+c.mouseLeave : a bool variable, to check if the mouse is in the swf or not
+c.mouseDown : a bool variable, to check if the mouse is down or not
+c.mousePressed : a bool variable, to check if the mouse is just pressed or not
+c.mouseUp : a bool variable, to check if the mouse is up or not
+c.mouseReleased : a bool variable, to check if the mouse is just released or not
+
+c.mouseX : a float variable, indicate mouse X position
+c.mouseY : a float variable, indicate mouse Y position
+c.mouseWheel : a int variable, indicate the mouse wheel delta
+
+And you can get the lastPressed key and lastReleased key too...
+
+And... support key buffering, so you can track user input for several input.
+
+And... check capsLock or numLock thingy
