@@ -302,4 +302,139 @@ class Ctrl
 		if(code == null) throw "Error : the key \""+key+"\" doesn't exist";
 		return code;
 	}
+
+	public function isNumeric(keyCode:Int) : Bool
+	{
+		return (keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105);
+	}
+
+	public function isAlpha(keyCode:Int) : Bool
+	{
+		return (keyCode >=65 && keyCode <= 90);
+	}
+
+	public function isSpecial(keyCode:Int) : Bool
+	{
+		return (keyCode >= 186 && keyCode <= 192) || (keyCode >= 219 && keyCode <= 222);
+	}
+
+	public function isWhiteSpace(keyCode:Int) : Bool
+	{
+		return keyCode == 9 || keyCode == 13 || keyCode == 32;
+	}
+	
+	
+	
+
+	public function isDisplayChar(keyCode:Int) : Bool
+	{
+		return isNumeric(keyCode) || isAlpha(keyCode) || isSpecial(keyCode) || isWhiteSpace(keyCode);
+	}
+
+	public function getChar() : String
+	{
+		var kc = lastPressed;
+		if(kc == null) return null;
+		return if(isDown("SHIFT"))
+		{
+			if(isNumeric(kc))
+			{
+				switch(kc)
+				{
+					case 48 : ")";
+					case 49 : "!";
+					case 50 : "@";
+					case 51 : "#";
+					case 52 : "$";
+					case 53 : "%";
+					case 54 : "^";
+					case 55 : "&";
+					case 56 : "*";
+					case 57 : "(";
+				}
+			} else if(isAlpha(kc))
+			{
+				if(capsLock)
+				{
+					String.fromCharCode(kc+32);
+				} else
+				{
+					String.fromCharCode(kc);
+				}
+			} else if(isSpecial(kc))
+			{
+				switch(kc)
+				{
+					case 186 : ":";
+					case 187 : "+";
+					case 188 : "<";
+					case 189 : "_";
+					case 190 : ">";
+					case 191 : "?";
+					case 192 : "~";
+
+					case 219 : "{";
+					case 220 : "|";
+					case 221 : "}";
+					case 222 : "\"";
+				}
+			} else if(isWhiteSpace(kc))
+			{
+				switch(kc)
+				{
+					case 9 : "\t";
+					case 13 : "\n";
+					case 32 : " ";
+				}
+			} else
+			{
+				null;
+			}
+		} else
+		{
+			if(isNumeric(kc))
+			{
+				""+(kc-48);
+			} else if(isAlpha(kc))
+			{
+				if(capsLock)
+				{
+					String.fromCharCode(kc);
+				} else
+				{
+					String.fromCharCode(kc+32);
+				}
+			} else if(isSpecial(kc))
+			{
+				switch(kc)
+				{
+					case 186 : ";";
+					case 187 : "=";
+					case 188 : ",";
+					case 189 : "-";
+					case 190 : ".";
+					case 191 : "/";
+					case 192 : "`";
+
+					case 219 : "[";
+					case 220 : "\\";
+					case 221 : "]";
+					case 222 : "'";
+				}
+			} else if(isWhiteSpace(kc))
+			{
+				switch(kc)
+				{
+					case 9 : "\t";
+					case 13 : "\n";
+					case 32 : " ";
+				}
+			} else
+			{
+				null;
+			}
+		}
+	}
+	
+	
 }
