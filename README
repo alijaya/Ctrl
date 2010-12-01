@@ -48,3 +48,9 @@ And you can get the lastPressed key and lastReleased key too...
 And... support key buffering, so you can track user input for several input.
 
 And... check capsLock or numLock thingy
+
+and another feature...
+get justPressed character, usefull for text field thingy...
+c.getChar()
+it will give you the just pressed char, it depends on whether you hold shift or capslock is on or off.
+
